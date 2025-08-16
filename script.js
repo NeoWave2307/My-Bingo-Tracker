@@ -1,4 +1,4 @@
-// ===== SELECT ELEMENTS =====
+
 const boxes = document.querySelectorAll('.grid-item');
 const completed = new Array(16).fill(false);
 const tasks = new Array(16).fill("");
@@ -13,7 +13,7 @@ const deleteBtn = document.getElementById("deleteTask");
 const closeBtn = document.querySelector(".close");
 let currentIndex = null;
 
-// ===== LOCAL STORAGE HELPERS =====
+//local storage
 function saveToLocalStorage() {
     localStorage.setItem("bingoTasks", JSON.stringify(tasks));
     localStorage.setItem("bingoCompleted", JSON.stringify(completed));
@@ -39,16 +39,16 @@ function loadFromLocalStorage() {
     }
 }
 
-// ===== MAIN FUNCTION =====
+//managing tasks
 function taskDone(index, event) {
     if (tasks[index] === "") {
-        // Add new task
+        //adding a task
         currentIndex = index;
         textInp.value = "";
         modal.style.display = "flex";
         textInp.focus();
     } else {
-        // Edit existing task on double click
+        //editting existing task using a double click
         if (event.detail >= 2) {
             currentIndex = index;
             textInp.value = tasks[index];
@@ -57,7 +57,7 @@ function taskDone(index, event) {
             return;
         }
 
-        // Toggle completion
+        //toggle part
         if (!completed[index]) {
             completed[index] = true;
             boxes[index].classList.add("completed");
@@ -73,7 +73,7 @@ function taskDone(index, event) {
     }
 }
 
-// ===== SAVE TASK =====
+//save tasks
 function saveTask() {
     tasks[currentIndex] = textInp.value.trim();
     boxes[currentIndex].textContent = tasks[currentIndex];
@@ -90,7 +90,7 @@ function saveTask() {
     modal.style.display = "none";
 }
 
-// ===== DELETE TASK =====
+//delete task
 deleteBtn.addEventListener("click", () => {
     tasks[currentIndex] = "";
     boxes[currentIndex].textContent = "";
@@ -105,12 +105,12 @@ deleteBtn.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
-// ===== CLOSE MODAL =====
+//closes modal after adding or editting
 closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
-// ===== SAVE ON ENTER =====
+//saves when enter is pressed
 textInp.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         saveTask();
@@ -119,7 +119,7 @@ textInp.addEventListener("keydown", (event) => {
 
 save.addEventListener("click", saveTask);
 
-// ===== WINNING LINES =====
+//bingo winning lines
 const winningLines = [
     [0,1,2,3], [4,5,6,7], [8,9,10,11], [12,13,14,15],
     [0,4,8,12], [1,5,9,13], [2,6,10,14], [3,7,11,15],
@@ -137,10 +137,11 @@ function checkBingoLines() {
     bingoCounterText.textContent = bingo_counter;
 }
 
-// ===== SET EVENT LISTENERS FOR BOXES =====
+//event listeners for boxes
 boxes.forEach((box, i) => {
     box.addEventListener("click", (event) => taskDone(i, event));
 });
 
-// ===== INITIAL LOAD =====
+//initial load
 loadFromLocalStorage();
+
