@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Tracker</title>
+</head>
+<body>
+    <h1 class="heading">
+        My Bingo Tracker
+    </h1>
+    <p class="para">
+        Complete a row, column, or a diagnol to achieve BINGO!
+    </p>
+    <div class="counter">
+        <div class="stat-box" id="task-counter" >
+            <h3>0/16</h3>
+            <p>Tasks Completed/Goals Achieved</p>
+        </div> 
+        <div class="stat-box" id="bingo-counter">
+            <h3>0</h3>
+            <p>Bingo Lines</p>
+        </div>  
+    </div>
+    <div>
+        <button id="reset_button">Reset All</button>
+    </div>
+    <div id="modal" class="modal">
+        <div class="task-modal">
+            <span class="close">&times;</span>
+            <h2>Enter your task:</h2>
+            <input type="text" id="textInput" placeholder="">
+            <button id="saveTask">Save</button>
+            <button id="deleteTask">Delete</button>
+        </div>
+    </div>
+    <div class="grid-container">
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

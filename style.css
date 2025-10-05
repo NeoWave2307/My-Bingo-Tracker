@@ -1,0 +1,261 @@
+body {
+    background-color: beige;
+}
+
+.heading
+{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 3.3em;
+    color: rgb(142, 51, 3);
+}
+.para
+{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: larger;
+    color: rgb(160, 61, 8);
+}
+.grid-container
+{
+    justify-content: center;
+    text-align: center;
+    display: grid;
+    border: 20px;
+    grid-template-columns: repeat(4, 180px); 
+    grid-template-rows: repeat(4, 180px);/*
+    grid-template-columns: repeat(4, minmax(100px, 1fr)); 
+    grid-auto-rows: minmax(100px, 1fr);*/
+    gap: 10px; 
+}
+.grid-item
+{
+    background-color: rgb(232, 146, 85); 
+    border: 2px solid rgb(103, 69, 5); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+    font-size: 24px; 
+    overflow-wrap: break-word;
+    padding: 4px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;/*
+    border-radius: 6px;*/
+}
+.grid-item:hover
+{
+    background-color: rgb(234, 156, 100);
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.grid-item::after
+{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(138, 71, 4, 0.715);
+    font-size: 2rem;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity .18s ease, transform .18s ease;
+    pointer-events: none; 
+}
+.grid-item.completed::after
+{
+    opacity: 1;
+    content: '✔';
+    transform: scale(1);
+}
+.counter {
+    margin: 10px auto;
+    display: flex ; 
+    justify-content: space-between;  
+    width: 500px;
+    padding: 12px;
+    text-align: center;
+}
+/*
+.stat-box{
+    text-align: center;
+}
+.grid-item.completed {
+    background-color: #10b981; 
+    color: white;
+    border-color: #0c9d6f;
+}
+*/
+.counter {
+    display: flex;
+    justify-content: space-between;     /* or use 'space-around' for more spacing */
+    margin: 20px auto;
+    max-width: 500px;                    /* Keeps the stats aligned nicely */
+}
+
+.stat-box {
+    background-color: blanchedalmond;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(112, 64, 1, 0.65);
+    flex: 1;
+    margin: 0 10px;
+    font-family: Arial, sans-serif;
+}
+
+.stat-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+.stat-box p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.grid-item.completed::after
+{
+    content: ''; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 60%;
+    height: 60%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
+/*}
+.modal {
+    display: none;  
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.task-modal
+{
+    background: rgb(248, 165, 134);
+    padding: 2em;
+}
+
+.modal-content {
+    background: blue;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    width: 300px;
+    text-align: center;
+}
+
+.modal-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}*/
+
+.modal{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* Semi-transparent black */
+  z-index: 1000;
+  /*display: flex;*/
+  align-items: center;
+  justify-content: center;
+}
+.task-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  position: relative; /* Needed for absolute positioning of close button */
+}
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #333;
+}
+.task-modal h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.task-modal input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.task-modal button {
+  background-color: #e89255;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.task-modal button:hover {
+  background-color: #d87c3a;
+}
+
+
+@media (max-width: 500px) {
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .grid-item {
+        font-size: 14px;
+        padding: 2px;
+    }
+}
+#reset_button{
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    background-color: blanchedalmond;
+    box-shadow: 0 2px 6px rgba(112, 64, 1, 0.65);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 2em;
+}
